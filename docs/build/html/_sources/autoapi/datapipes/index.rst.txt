@@ -1,0 +1,27 @@
+:mod:`datapipes`
+================
+
+.. py:module:: datapipes
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   _utilities/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   dataio/index.rst
+   factory/index.rst
+   observer/index.rst
+   run/index.rst
+
+

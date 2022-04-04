@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>datapipes.observer &#8212; Data Pipes 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-datapipes.observer">
+<span id="datapipes-observer"></span><h1><a class="reference internal" href="#module-datapipes.observer" title="datapipes.observer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datapipes.observer</span></code></a><a class="headerlink" href="#module-datapipes.observer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.observer.Subject" title="datapipes.observer.Subject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subject</span></code></a>()</p></td>
+<td><p>The Subject interface declares a set of methods for managing subscribers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.observer.ConcreteSubject" title="datapipes.observer.ConcreteSubject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcreteSubject</span></code></a>()</p></td>
+<td><p>The Subject owns some important state and notifies observers when the state changes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.observer.Observer" title="datapipes.observer.Observer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Observer</span></code></a>()</p></td>
+<td><p>The Observer interface declares the update method, used by subjects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.observer.PubSub" title="datapipes.observer.PubSub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PubSub</span></code></a>()</p></td>
+<td><p>Publish Subscribe decorator for object instantiated by the Data Factory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.observer.ConcreteObserverA" title="datapipes.observer.ConcreteObserverA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcreteObserverA</span></code></a>()</p></td>
+<td><p>The Observer interface declares the update method, used by subjects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.observer.ConcreteObserverB" title="datapipes.observer.ConcreteObserverB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcreteObserverB</span></code></a>()</p></td>
+<td><p>The Observer interface declares the update method, used by subjects.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="datapipes.observer._LOGGER">
+<code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">_LOGGER</code><a class="headerlink" href="#datapipes.observer._LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.Subject">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">Subject</code><a class="headerlink" href="#datapipes.observer.Subject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The Subject interface declares a set of methods for managing subscribers.</p>
+<dl class="py method">
+<dt id="datapipes.observer.Subject.attach">
+<em class="property">abstract </em><code class="sig-name descname">attach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.Subject.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach an observer to the subject.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.Subject.detach">
+<em class="property">abstract </em><code class="sig-name descname">detach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.Subject.detach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detach an observer from the subject.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.Subject.notify">
+<em class="property">abstract </em><code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.Subject.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notify all observers about an event.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.ConcreteSubject">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">ConcreteSubject</code><a class="headerlink" href="#datapipes.observer.ConcreteSubject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.observer.Subject" title="datapipes.observer.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.observer.Subject</span></code></a></p>
+<p>The Subject owns some important state and notifies observers when the state changes.</p>
+<dl class="py attribute">
+<dt id="datapipes.observer.ConcreteSubject._state">
+<code class="sig-name descname">_state</code><em class="property"> :int</em><a class="headerlink" href="#datapipes.observer.ConcreteSubject._state" title="Permalink to this definition">¶</a></dt>
+<dd><p>For the sake of simplicity, the Subject’s state, essential to all
+subscribers, is stored in this variable.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="datapipes.observer.ConcreteSubject._observers">
+<code class="sig-name descname">_observers</code><em class="property"> :List['Observer'] = []</em><a class="headerlink" href="#datapipes.observer.ConcreteSubject._observers" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of subscribers. In real life, the list of subscribers can be stored
+more comprehensively (categorized by event type, etc.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteSubject.attach">
+<code class="sig-name descname">attach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteSubject.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach an observer to the subject.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteSubject.detach">
+<code class="sig-name descname">detach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteSubject.detach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detach an observer from the subject.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteSubject.notify">
+<code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteSubject.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger an update in each subscriber.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteSubject.notify_one">
+<code class="sig-name descname">notify_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteSubject.notify_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger an update in a specific subscriber.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteSubject.dataReady">
+<code class="sig-name descname">dataReady</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteSubject.dataReady" title="Permalink to this definition">¶</a></dt>
+<dd><p>I can see this being used for basic munging of data once it’s gathered from different sources.
+Or perhaps there are summary views of data that actually make sense to have here, like a report of what you’re subscribing to.</p>
+<p>Could this be the algorithm code? It’s the algorithm that’s a ConcreteSubject of interest by others, and it
+attaches, detaches, and notifies people of it’s changes…</p>
+<p>Usually, the subscription logic is only a fraction of what a Subject can
+really do. Subjects commonly hold some important business logic, that
+triggers a notification method whenever something important is about to
+happen (or after it).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.Observer">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">Observer</code><a class="headerlink" href="#datapipes.observer.Observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The Observer interface declares the update method, used by subjects.</p>
+<dl class="py method">
+<dt id="datapipes.observer.Observer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.Observer.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive update from subject.
+…we could include common update logic here…</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.PubSub">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">PubSub</code><a class="headerlink" href="#datapipes.observer.PubSub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publish Subscribe decorator for object instantiated by the Data Factory.</p>
+<dl class="py method">
+<dt id="datapipes.observer.PubSub.attach">
+<code class="sig-name descname">attach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.PubSub.attach" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.PubSub.detach">
+<code class="sig-name descname">detach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.PubSub.detach" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.PubSub.notify">
+<code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.PubSub.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger an update in each subscriber.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.PubSub.notify_one">
+<code class="sig-name descname">notify_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">observer</span><span class="p">:</span> <span class="n">Observer</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.PubSub.notify_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger an update in a specific subscriber.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.observer.PubSub.dataReady">
+<code class="sig-name descname">dataReady</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.PubSub.dataReady" title="Permalink to this definition">¶</a></dt>
+<dd><p>I can see this being used for basic munging of data once it’s gathered from different sources.
+Or perhaps there are summary views of data that actually make sense to have here, like a report of what you’re subscribing to.</p>
+<p>Could this be the algorithm code? It’s the algorithm that’s a ConcreteSubject of interest by others, and it
+attaches, detaches, and notifies people of it’s changes…</p>
+<p>Usually, the subscription logic is only a fraction of what a Subject can
+really do. Subjects commonly hold some important business logic, that
+triggers a notification method whenever something important is about to
+happen (or after it).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.ConcreteObserverA">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">ConcreteObserverA</code><a class="headerlink" href="#datapipes.observer.ConcreteObserverA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.observer.Observer" title="datapipes.observer.Observer"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.observer.Observer</span></code></a></p>
+<p>The Observer interface declares the update method, used by subjects.</p>
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteObserverA.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteObserverA.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive update from subject.
+…we could include common update logic here…</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.observer.ConcreteObserverB">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.observer.</code><code class="sig-name descname">ConcreteObserverB</code><a class="headerlink" href="#datapipes.observer.ConcreteObserverB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.observer.Observer" title="datapipes.observer.Observer"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.observer.Observer</span></code></a></p>
+<p>The Observer interface declares the update method, used by subjects.</p>
+<dl class="py method">
+<dt id="datapipes.observer.ConcreteObserverB.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.observer.ConcreteObserverB.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive update from subject.
+…we could include common update logic here…</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Data Pipes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sean Moore Gonzalez.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/datapipes/observer/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

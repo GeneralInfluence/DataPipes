@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>datapipes.factory &#8212; Data Pipes 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-datapipes.factory">
+<span id="datapipes-factory"></span><h1><a class="reference internal" href="#module-datapipes.factory" title="datapipes.factory"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datapipes.factory</span></code></a><a class="headerlink" href="#module-datapipes.factory" title="Permalink to this headline">¶</a></h1>
+<p><p>Contains the overall factory definition.</p>
+</p>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.factory.Factory" title="datapipes.factory.Factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Factory</span></code></a>()</p></td>
+<td><p>Factory decorator class for client algorithms configured to subscribe to the DataPipes PubSub network.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="datapipes.factory._LOGGER">
+<code class="sig-prename descclassname">datapipes.factory.</code><code class="sig-name descname">_LOGGER</code><a class="headerlink" href="#datapipes.factory._LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.factory.Factory">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.factory.</code><code class="sig-name descname">Factory</code><a class="headerlink" href="#datapipes.factory.Factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory decorator class for client algorithms configured to subscribe to the DataPipes PubSub network.
+Decorate your algorithm class with your algorithm name like so:</p>
+<p>&#64;Factory.register(‘your_algorithm_name’)
+class your_algorithm_name():</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Name</strong> – The name of the class/funcation/algorithm being decorated. Must match the config.py reference.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The client decorated object registered with DataPipes PubSub network.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Instantiated Class Object</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="datapipes.factory.Factory.Name">
+<code class="sig-name descname">Name</code><a class="headerlink" href="#datapipes.factory.Factory.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>String</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">Instantiated Class Object</code></dt>
+<dd><p>&lt;Client Class Object&gt;</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="datapipes.factory.Factory.__registry">
+<code class="sig-name descname">__registry</code><a class="headerlink" href="#datapipes.factory.Factory.__registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="datapipes.factory.Factory.__temp_obj">
+<code class="sig-name descname">__temp_obj</code><a class="headerlink" href="#datapipes.factory.Factory.__temp_obj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.factory.Factory.notify">
+<em class="property">static </em><code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.factory.Factory.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the method ‘notify’ to the decorated client class</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.factory.Factory.attach">
+<em class="property">static </em><code class="sig-name descname">attach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.factory.Factory.attach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the method ‘attach’ to the decorated client class</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.factory.Factory.detach">
+<em class="property">static </em><code class="sig-name descname">detach</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.factory.Factory.detach" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the method ‘detach’ to the decorated client class</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.factory.Factory.register">
+<em class="property">classmethod </em><code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.factory.Factory.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to register the client algorithm to the internal registry.
+Decorate your algorithm class with your algorithm name like so:</p>
+<p>&#64;Factory.register(‘your_algorithm_name’)
+class your_algorithm_name():</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.factory.Factory.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.factory.Factory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory command to create the client decorated object for connection to the DataPipes PubSub network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – Allows the client to pass any series of separate initialization veriables to the constructor.</p></li>
+<li><p><strong>**kwargs</strong> – Allows the client to pass an initialization dictionary to the constructor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of the client algorithm class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Data Pipes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sean Moore Gonzalez.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/datapipes/factory/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

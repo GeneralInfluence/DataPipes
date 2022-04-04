@@ -1,0 +1,123 @@
+:mod:`datapipes.run`
+====================
+
+.. py:module:: datapipes.run
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   datapipes.run.RunStrategy
+   datapipes.run.RunLocal
+   datapipes.run.RunGCP
+   datapipes.run.RunContext
+   datapipes.run.DataSpigot
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   datapipes.run.dataSpigot
+
+
+.. data:: _LOGGER
+   
+
+   
+
+.. py:class:: RunStrategy
+
+   Bases: :class:`abc.ABC`
+
+   Base class for the cmd runner.  All runner class implementations must implement this interface.
+
+   .. method:: execute(self, cfg: List[Dict[str, Any]])
+      :abstractmethod:
+
+
+      Execute the Runner which starts the application.
+
+
+
+.. py:class:: RunLocal(cfg: Dict[str, Any])
+
+   Bases: :class:`datapipes.run.RunStrategy`
+
+   Run Local has to be abstrated for anyone looking to execute a pipeline.
+   This means projet specific logic and variables, if necessary, must be passed in.
+
+   .. method:: execute(self)
+
+
+      Execute the Runner which starts the application.
+
+
+   .. method:: _assert_experiment(self, model_name=None)
+
+
+
+   .. method:: _handle_batch(self, run_cfg)
+
+
+
+   .. method:: _handle_stream(self, cfg: Dict[str, Any])
+
+
+
+
+.. py:class:: RunGCP
+
+   Bases: :class:`datapipes.run.RunStrategy`
+
+   Base class for the cmd runner.  All runner class implementations must implement this interface.
+
+
+.. py:class:: RunContext(cfg: Dict = None)
+
+   Bases: :class:`datapipes.run.RunStrategy`
+
+   Goal is to choose the run strategy and execute.
+   Strategies include:
+   1. Local + #Companies
+   2. Local + #Companies + MiniKube
+   3. Local + #Companies + Testing
+   4. Local + #Companies + MiniKube + Testing
+   5-8. Remote + et al
+
+   .. method:: addStrategy(self, Strategy: RunStrategy = None)
+
+
+
+   .. method:: setStrategy(self, strategy: str)
+
+
+
+   .. method:: execute(self)
+
+
+      Execute the Runner which starts the application.
+
+
+
+.. py:class:: DataSpigot(cfg: str = None, version: BinaryIO = None)
+
+   .. method:: on(self)
+
+
+
+   .. method:: off(self)
+
+
+
+
+.. function:: dataSpigot(cfg, version)
+
+

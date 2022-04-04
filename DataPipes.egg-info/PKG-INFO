@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: DataPipes
+Version: 1.0.0
+Summary: Data I/O and PubSub Network for Local & Remote Algorithm Development
+Home-page: https://github.com/GeneralInfluence/DataPipes
+Author: Sean Moore Gonzalez
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: # DataPipes
+        Simplifying the algorithm development process by eliminating typical glue code.
+        
+        
+Platform: UNKNOWN
+Classifier: Data Science :: Algorithm :: Pipeline :: Factory :: Python :: OS Independent

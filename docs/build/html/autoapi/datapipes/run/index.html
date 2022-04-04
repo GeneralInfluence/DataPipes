@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>datapipes.run &#8212; Data Pipes 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-datapipes.run">
+<span id="datapipes-run"></span><h1><a class="reference internal" href="#module-datapipes.run" title="datapipes.run"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datapipes.run</span></code></a><a class="headerlink" href="#module-datapipes.run" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.run.RunStrategy" title="datapipes.run.RunStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunStrategy</span></code></a>()</p></td>
+<td><p>Base class for the cmd runner.  All runner class implementations must implement this interface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.run.RunLocal" title="datapipes.run.RunLocal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunLocal</span></code></a>(cfg: Dict[str, Any])</p></td>
+<td><p>Run Local has to be abstrated for anyone looking to execute a pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.run.RunGCP" title="datapipes.run.RunGCP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunGCP</span></code></a>()</p></td>
+<td><p>Base class for the cmd runner.  All runner class implementations must implement this interface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.run.RunContext" title="datapipes.run.RunContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunContext</span></code></a>(cfg: Dict = None)</p></td>
+<td><p>Goal is to choose the run strategy and execute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.run.DataSpigot" title="datapipes.run.DataSpigot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSpigot</span></code></a>(cfg: str = None, version: BinaryIO = None)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.run.dataSpigot" title="datapipes.run.dataSpigot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dataSpigot</span></code></a>(cfg, version)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="datapipes.run._LOGGER">
+<code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">_LOGGER</code><a class="headerlink" href="#datapipes.run._LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.run.RunStrategy">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">RunStrategy</code><a class="headerlink" href="#datapipes.run.RunStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base class for the cmd runner.  All runner class implementations must implement this interface.</p>
+<dl class="py method">
+<dt id="datapipes.run.RunStrategy.execute">
+<em class="property">abstract </em><code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunStrategy.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the Runner which starts the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.run.RunLocal">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">RunLocal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunLocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.run.RunStrategy" title="datapipes.run.RunStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.run.RunStrategy</span></code></a></p>
+<p>Run Local has to be abstrated for anyone looking to execute a pipeline.
+This means projet specific logic and variables, if necessary, must be passed in.</p>
+<dl class="py method">
+<dt id="datapipes.run.RunLocal.execute">
+<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunLocal.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the Runner which starts the application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.RunLocal._assert_experiment">
+<code class="sig-name descname">_assert_experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunLocal._assert_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.RunLocal._handle_batch">
+<code class="sig-name descname">_handle_batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">run_cfg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunLocal._handle_batch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.RunLocal._handle_stream">
+<code class="sig-name descname">_handle_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunLocal._handle_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.run.RunGCP">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">RunGCP</code><a class="headerlink" href="#datapipes.run.RunGCP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.run.RunStrategy" title="datapipes.run.RunStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.run.RunStrategy</span></code></a></p>
+<p>Base class for the cmd runner.  All runner class implementations must implement this interface.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.run.RunContext">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">RunContext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.run.RunStrategy" title="datapipes.run.RunStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.run.RunStrategy</span></code></a></p>
+<p>Goal is to choose the run strategy and execute.
+Strategies include:
+1. Local + #Companies
+2. Local + #Companies + MiniKube
+3. Local + #Companies + Testing
+4. Local + #Companies + MiniKube + Testing
+5-8. Remote + et al</p>
+<dl class="py method">
+<dt id="datapipes.run.RunContext.addStrategy">
+<code class="sig-name descname">addStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">Strategy</span><span class="p">:</span> <span class="n">RunStrategy</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunContext.addStrategy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.RunContext.setStrategy">
+<code class="sig-name descname">setStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">strategy</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunContext.setStrategy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.RunContext.execute">
+<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.RunContext.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the Runner which starts the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.run.DataSpigot">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">DataSpigot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="p">:</span> <span class="n">BinaryIO</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.DataSpigot" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="datapipes.run.DataSpigot.on">
+<code class="sig-name descname">on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.DataSpigot.on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.run.DataSpigot.off">
+<code class="sig-name descname">off</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.DataSpigot.off" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="datapipes.run.dataSpigot">
+<code class="sig-prename descclassname">datapipes.run.</code><code class="sig-name descname">dataSpigot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span></em>, <em class="sig-param"><span class="n">version</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.run.dataSpigot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Data Pipes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sean Moore Gonzalez.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/datapipes/run/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

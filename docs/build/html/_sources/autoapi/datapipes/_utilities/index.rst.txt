@@ -1,0 +1,16 @@
+:mod:`datapipes._utilities`
+===========================
+
+.. py:module:: datapipes._utilities
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   logger/index.rst
+   utilities/index.rst
+
+

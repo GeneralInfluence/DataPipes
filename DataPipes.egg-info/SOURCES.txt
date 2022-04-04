@@ -1,0 +1,14 @@
+README.md
+setup.py
+DataPipes.egg-info/PKG-INFO
+DataPipes.egg-info/SOURCES.txt
+DataPipes.egg-info/dependency_links.txt
+DataPipes.egg-info/top_level.txt
+datapipes/__init__.py
+datapipes/dataio.py
+datapipes/factory.py
+datapipes/observer.py
+datapipes/run.py
+datapipes/_utilities/__init__.py
+datapipes/_utilities/logger.py
+datapipes/_utilities/utilities.py

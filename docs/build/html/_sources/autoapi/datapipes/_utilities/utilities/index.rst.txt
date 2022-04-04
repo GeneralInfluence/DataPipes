@@ -1,0 +1,62 @@
+:mod:`datapipes._utilities.utilities`
+=====================================
+
+.. py:module:: datapipes._utilities.utilities
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   datapipes._utilities.utilities.DictDot
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   datapipes._utilities.utilities.Dict2DictDot
+   datapipes._utilities.utilities.verifyConfiguration
+   datapipes._utilities.utilities.class_import
+   datapipes._utilities.utilities.importClasses
+   datapipes._utilities.utilities.importModules
+   datapipes._utilities.utilities.import_package_modules
+
+
+.. py:class:: DictDot(dict_)
+
+   Bases: :class:`object`
+
+
+.. function:: Dict2DictDot(d)
+
+
+.. function:: verifyConfiguration(cfg)
+
+
+.. function:: class_import(name)
+
+
+.. function:: importClasses(_file=None, _name=None, cls_name_pattern=None)
+
+
+.. function:: importModules(_file=None, _name=None)
+
+
+.. function:: import_package_modules(_file: str, _name: str)
+
+   This logic dynamically discovers and imports any subpackage modules to _file.
+   This allows for decorators to be executed.
+
+   :param _file: the file whose directory location will be used to discover the subpackages
+   :type _file: str
+   :param _name: the module name
+   :type _name: str
+
+

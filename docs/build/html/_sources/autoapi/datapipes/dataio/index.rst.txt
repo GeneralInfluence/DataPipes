@@ -1,0 +1,226 @@
+:mod:`datapipes.dataio`
+=======================
+
+.. py:module:: datapipes.dataio
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   datapipes.dataio.DataBase
+   datapipes.dataio._DataStrategy
+   datapipes.dataio.StrategyCSV
+   datapipes.dataio.StrategyPostgres
+   datapipes.dataio.DataContext
+
+
+
+.. data:: _LOGGER
+   
+
+   
+
+.. py:class:: DataBase(type: str = None)
+
+   Bases: :class:`abc.ABC`
+
+   Base class for data I/O.  All data I/O class implementations must implement this interface.
+
+   .. method:: read(self)
+      :abstractmethod:
+
+
+      Stream of individual examples.
+
+
+   .. method:: batch_read(self)
+      :abstractmethod:
+
+
+      Provides all examples in a single batch.
+
+
+   .. method:: data_stream(self)
+      :abstractmethod:
+
+
+      Stream of individual_manual examples.
+
+
+   .. method:: write(self, data: Dict[str, Any])
+      :abstractmethod:
+
+
+      Write an individual example.
+
+
+   .. method:: batch_write(self, data: List[Dict[str, Any]])
+      :abstractmethod:
+
+
+      Write all examples as a batch.
+
+
+   .. method:: write_stream(self, data: Dict[str, Any])
+      :abstractmethod:
+
+
+      Write an individual_manual example.
+
+
+   .. method:: close(self)
+      :abstractmethod:
+
+
+      Close the Data IO class.
+
+
+
+.. py:class:: DataStrategy
+
+   Bases: :class:`abc.ABC`
+
+   Generic interface for Data Pipeline plugin processes to read and write data.
+   Implementation: Inherit this class into your algorithm class to force the interface standard.
+   Q: Should this interface directly with the algorithm? Is this the simple gateway and the context is enough?
+
+   .. method:: load(cls, context: str, data: Dict)
+      :abstractmethod:
+
+
+
+   .. method:: save(cls, context: str, data: Dict)
+      :abstractmethod:
+
+
+
+
+.. py:class:: StrategyCSV(key, path)
+
+   Bases: :class:`datapipes.dataio.DataStrategy`
+
+   Generic interface for Data Pipeline plugin processes to read and write data.
+   Implementation: Inherit this class into your algorithm class to force the interface standard.
+   Q: Should this interface directly with the algorithm? Is this the simple gateway and the context is enough?
+
+   .. method:: load(self)
+
+
+
+   .. method:: save(self, result: Dict = None)
+
+
+
+   .. method:: batch_read(self, key=None, path=None)
+
+
+      Provides all examples in a CSV file in a single batch.
+
+
+   .. method:: batch_write(self, data: pd.DataFrame = None)
+
+
+      Write all examples as a batch.
+
+
+
+.. py:class:: StrategyPostgres
+
+   Bases: :class:`datapipes.dataio.DataStrategy`
+
+   Thing about these strategies is HOW to make them generic
+
+   .. attribute:: _PROVDB
+      
+
+      
+
+   .. method:: execute(self)
+
+
+
+   .. method:: _prov_connect()
+
+
+      instantiates cx to prov db
+
+
+   .. method:: batch_write(self)
+
+
+      Write all examples pertaining to key as a batch.
+      :param key: the unique key (the corp ID) for the batch and the dataset_id
+      :type key: str
+      :param data: the batch of data to write
+      :type data: Dict[str, Any]
+
+
+   .. method:: _create_row(VERSION: str, created_date: datetime = 'NOW()', has_individual_manual: bool = False, has_vendor_manual: bool = False, has_industry_manual: bool = False, has_document_manual: bool = False, status: str = 'CREATED', description: str = None, name: str = None, **kwargs)
+
+
+      :param VERSION: the version of downloader
+      :type VERSION: str
+      :param has_individual: whether or not row has an individual-type data type
+      :type has_individual: bool
+      :param has_vendor: whether or not row has an vendor-type data type
+      :type has_industry: bool
+      :param has_industry: whether or not row has an industry-type data type
+      :type has_industry: bool
+      :param has_document: whether or not row has an document-type data type
+      :type has_document: bool
+      :param status: CREATED or SUCCESS
+      :type status: str
+      :param name: the name given to the campaign
+      :type name: str
+      creates a row in the provdb
+      returns the BIGSERIAL id
+
+
+   .. method:: finish_row(id: int)
+
+
+      :param id: the id of the dataset
+      :type id: int
+
+
+
+.. py:class:: DataContext(_cfg: Dict = None)
+
+   Bases: :class:`datapipes.dataio.DataStrategy`
+
+   The Strategy Context can be used to interpret the
+
+   .. method:: addStrategy(self, strategy: DataStrategy)
+
+
+
+   .. method:: setStrategy(self, strategy: str)
+
+
+
+   .. method:: on(self)
+
+
+
+   .. method:: load(self)
+
+
+
+   .. method:: save(self, result: Dict = None)
+
+
+
+   .. method:: notify(self)
+
+
+
+   .. method:: update(self, subjectPubSub=None)
+
+
+
+

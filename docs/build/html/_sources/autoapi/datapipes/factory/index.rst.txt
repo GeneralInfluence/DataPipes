@@ -1,0 +1,104 @@
+:mod:`datapipes.factory`
+========================
+
+.. py:module:: datapipes.factory
+
+.. autoapi-nested-parse::
+
+   Contains the overall factory definition.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   datapipes.factory.Factory
+
+
+
+.. data:: _LOGGER
+   
+
+   
+
+.. py:class:: Factory
+
+   Factory decorator class for client algorithms configured to subscribe to the DataPipes PubSub network.
+   Decorate your algorithm class with your algorithm name like so:
+
+   @Factory.register('your_algorithm_name')
+   class your_algorithm_name():
+
+   :param Name: The name of the class/funcation/algorithm being decorated. Must match the config.py reference.
+
+   :returns: The client decorated object registered with DataPipes PubSub network.
+   :rtype: Instantiated Class Object
+
+   .. attribute:: Name
+
+      String
+
+   .. attribute:: Instantiated Class Object
+
+      <Client Class Object>
+
+   .. attribute:: __registry
+      
+
+      
+
+   .. attribute:: __temp_obj
+      
+
+      
+
+   .. method:: notify(self)
+      :staticmethod:
+
+
+      Adds the method 'notify' to the decorated client class
+
+
+   .. method:: attach(self)
+      :staticmethod:
+
+
+      Adds the method 'attach' to the decorated client class
+
+
+   .. method:: detach(self)
+      :staticmethod:
+
+
+      Adds the method 'detach' to the decorated client class
+
+
+   .. method:: register(cls, name: str = None)
+      :classmethod:
+
+
+      Class method to register the client algorithm to the internal registry.
+      Decorate your algorithm class with your algorithm name like so:
+
+      @Factory.register('your_algorithm_name')
+      class your_algorithm_name():
+
+
+   .. method:: create(cls, *args, **kwargs)
+      :classmethod:
+
+
+      Factory command to create the client decorated object for connection to the DataPipes PubSub network.
+
+      :param \*args: Allows the client to pass any series of separate initialization veriables to the constructor.
+      :param \*\*kwargs: Allows the client to pass an initialization dictionary to the constructor.
+
+      :returns: An instance of the client algorithm class.
+
+
+

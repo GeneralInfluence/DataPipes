@@ -1,0 +1,28 @@
+:mod:`datapipes._utilities.logger`
+==================================
+
+.. py:module:: datapipes._utilities.logger
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   datapipes._utilities.logger.configure_logger
+
+
+.. data:: LOGGER_NAME
+   :annotation: = features
+
+   
+
+.. function:: configure_logger(level: str = 'info', output_format: str = 'json')
+
+   Configures the package logger.
+
+

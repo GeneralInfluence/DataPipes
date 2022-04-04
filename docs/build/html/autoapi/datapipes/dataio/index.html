@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>datapipes.dataio &#8212; Data Pipes 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-datapipes.dataio">
+<span id="datapipes-dataio"></span><h1><a class="reference internal" href="#module-datapipes.dataio" title="datapipes.dataio"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datapipes.dataio</span></code></a><a class="headerlink" href="#module-datapipes.dataio" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.dataio.DataBase" title="datapipes.dataio.DataBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBase</span></code></a>(type: str = None)</p></td>
+<td><p>Base class for data I/O.  All data I/O class implementations must implement this interface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.dataio.DataStrategy" title="datapipes.dataio.DataStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataStrategy</span></code></a>()</p></td>
+<td><p>Generic interface for Data Pipeline plugin processes to read and write data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.dataio.StrategyCSV" title="datapipes.dataio.StrategyCSV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StrategyCSV</span></code></a>(key, path)</p></td>
+<td><p>Generic interface for Data Pipeline plugin processes to read and write data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#datapipes.dataio.StrategyPostgres" title="datapipes.dataio.StrategyPostgres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StrategyPostgres</span></code></a>()</p></td>
+<td><p>Thing about these strategies is HOW to make them generic</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#datapipes.dataio.DataContext" title="datapipes.dataio.DataContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataContext</span></code></a>(_cfg: Dict = None)</p></td>
+<td><p>The Strategy Context can be used to interpret the</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="datapipes.dataio._LOGGER">
+<code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">_LOGGER</code><a class="headerlink" href="#datapipes.dataio._LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.dataio.DataBase">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">DataBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">type</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base class for data I/O.  All data I/O class implementations must implement this interface.</p>
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.read">
+<em class="property">abstract </em><code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream of individual examples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.batch_read">
+<em class="property">abstract </em><code class="sig-name descname">batch_read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.batch_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides all examples in a single batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.data_stream">
+<em class="property">abstract </em><code class="sig-name descname">data_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.data_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream of individual_manual examples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.write">
+<em class="property">abstract </em><code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write an individual example.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.batch_write">
+<em class="property">abstract </em><code class="sig-name descname">batch_write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.batch_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write all examples as a batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.write_stream">
+<em class="property">abstract </em><code class="sig-name descname">write_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.write_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write an individual_manual example.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataBase.close">
+<em class="property">abstract </em><code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataBase.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the Data IO class.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.dataio.DataStrategy">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">DataStrategy</code><a class="headerlink" href="#datapipes.dataio.DataStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Generic interface for Data Pipeline plugin processes to read and write data.
+Implementation: Inherit this class into your algorithm class to force the interface standard.
+Q: Should this interface directly with the algorithm? Is this the simple gateway and the context is enough?</p>
+<dl class="py method">
+<dt id="datapipes.dataio.DataStrategy.load">
+<em class="property">abstract </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataStrategy.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataStrategy.save">
+<em class="property">abstract </em><code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">context</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataStrategy.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.dataio.StrategyCSV">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">StrategyCSV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyCSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.dataio.DataStrategy" title="datapipes.dataio.DataStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.dataio.DataStrategy</span></code></a></p>
+<p>Generic interface for Data Pipeline plugin processes to read and write data.
+Implementation: Inherit this class into your algorithm class to force the interface standard.
+Q: Should this interface directly with the algorithm? Is this the simple gateway and the context is enough?</p>
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyCSV.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyCSV.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyCSV.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">result</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyCSV.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyCSV.batch_read">
+<code class="sig-name descname">batch_read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyCSV.batch_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides all examples in a CSV file in a single batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyCSV.batch_write">
+<code class="sig-name descname">batch_write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">pd.DataFrame</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyCSV.batch_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write all examples as a batch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.dataio.StrategyPostgres">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">StrategyPostgres</code><a class="headerlink" href="#datapipes.dataio.StrategyPostgres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.dataio.DataStrategy" title="datapipes.dataio.DataStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.dataio.DataStrategy</span></code></a></p>
+<p>Thing about these strategies is HOW to make them generic</p>
+<dl class="py attribute">
+<dt id="datapipes.dataio.StrategyPostgres._PROVDB">
+<code class="sig-name descname">_PROVDB</code><a class="headerlink" href="#datapipes.dataio.StrategyPostgres._PROVDB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyPostgres.execute">
+<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyPostgres.execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyPostgres._prov_connect">
+<code class="sig-name descname">_prov_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyPostgres._prov_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>instantiates cx to prov db</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyPostgres.batch_write">
+<code class="sig-name descname">batch_write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyPostgres.batch_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write all examples pertaining to key as a batch.
+:param key: the unique key (the corp ID) for the batch and the dataset_id
+:type key: str
+:param data: the batch of data to write
+:type data: Dict[str, Any]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyPostgres._create_row">
+<code class="sig-name descname">_create_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">VERSION</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">created_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="default_value">'NOW()'</span></em>, <em class="sig-param"><span class="n">has_individual_manual</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">has_vendor_manual</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">has_industry_manual</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">has_document_manual</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">status</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'CREATED'</span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyPostgres._create_row" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>VERSION</strong> (<em>str</em>) – the version of downloader</p></li>
+<li><p><strong>has_individual</strong> (<em>bool</em>) – whether or not row has an individual-type data type</p></li>
+<li><p><strong>has_vendor</strong> – whether or not row has an vendor-type data type</p></li>
+<li><p><strong>has_industry</strong> (<em>bool</em>) – whether or not row has an industry-type data type</p></li>
+<li><p><strong>has_document</strong> (<em>bool</em>) – whether or not row has an document-type data type</p></li>
+<li><p><strong>status</strong> (<em>str</em>) – CREATED or SUCCESS</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the name given to the campaign</p></li>
+</ul>
+</dd>
+</dl>
+<p>creates a row in the provdb
+returns the BIGSERIAL id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.StrategyPostgres.finish_row">
+<code class="sig-name descname">finish_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.StrategyPostgres.finish_row" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>int</em>) – the id of the dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="datapipes.dataio.DataContext">
+<em class="property">class </em><code class="sig-prename descclassname">datapipes.dataio.</code><code class="sig-name descname">DataContext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">_cfg</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#datapipes.dataio.DataStrategy" title="datapipes.dataio.DataStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">datapipes.dataio.DataStrategy</span></code></a></p>
+<p>The Strategy Context can be used to interpret the</p>
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.addStrategy">
+<code class="sig-name descname">addStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">strategy</span><span class="p">:</span> <span class="n">DataStrategy</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.addStrategy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.setStrategy">
+<code class="sig-name descname">setStrategy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">strategy</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.setStrategy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.on">
+<code class="sig-name descname">on</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">result</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.notify">
+<code class="sig-name descname">notify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.notify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="datapipes.dataio.DataContext.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">subjectPubSub</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#datapipes.dataio.DataContext.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Data Pipes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sean Moore Gonzalez.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/datapipes/dataio/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

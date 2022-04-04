@@ -1,0 +1,198 @@
+:mod:`datapipes.observer`
+=========================
+
+.. py:module:: datapipes.observer
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   datapipes.observer.Subject
+   datapipes.observer.ConcreteSubject
+   datapipes.observer.Observer
+   datapipes.observer.PubSub
+   datapipes.observer.ConcreteObserverA
+   datapipes.observer.ConcreteObserverB
+
+
+
+.. data:: _LOGGER
+   
+
+   
+
+.. py:class:: Subject
+
+   Bases: :class:`abc.ABC`
+
+   The Subject interface declares a set of methods for managing subscribers.
+
+   .. method:: attach(self, observer: Observer)
+      :abstractmethod:
+
+
+      Attach an observer to the subject.
+
+
+   .. method:: detach(self, observer: Observer)
+      :abstractmethod:
+
+
+      Detach an observer from the subject.
+
+
+   .. method:: notify(self)
+      :abstractmethod:
+
+
+      Notify all observers about an event.
+
+
+
+.. py:class:: ConcreteSubject
+
+   Bases: :class:`datapipes.observer.Subject`
+
+   The Subject owns some important state and notifies observers when the state changes.
+
+   .. attribute:: _state
+      :annotation: :int
+
+      For the sake of simplicity, the Subject's state, essential to all
+      subscribers, is stored in this variable.
+
+
+   .. attribute:: _observers
+      :annotation: :List['Observer'] = []
+
+      List of subscribers. In real life, the list of subscribers can be stored
+      more comprehensively (categorized by event type, etc.).
+
+
+   .. method:: attach(self, observer: Observer)
+
+
+      Attach an observer to the subject.
+
+
+   .. method:: detach(self, observer: Observer)
+
+
+      Detach an observer from the subject.
+
+
+   .. method:: notify(self)
+
+
+      Trigger an update in each subscriber.
+
+
+   .. method:: notify_one(self, observer: Observer = None)
+
+
+      Trigger an update in a specific subscriber.
+
+
+   .. method:: dataReady(self)
+
+
+      I can see this being used for basic munging of data once it's gathered from different sources.
+      Or perhaps there are summary views of data that actually make sense to have here, like a report of what you're subscribing to.
+
+      Could this be the algorithm code? It's the algorithm that's a ConcreteSubject of interest by others, and it
+      attaches, detaches, and notifies people of it's changes...
+
+      Usually, the subscription logic is only a fraction of what a Subject can
+      really do. Subjects commonly hold some important business logic, that
+      triggers a notification method whenever something important is about to
+      happen (or after it).
+
+
+
+.. py:class:: Observer
+
+   Bases: :class:`abc.ABC`
+
+   The Observer interface declares the update method, used by subjects.
+
+   .. method:: update(self, subject: Subject)
+
+
+      Receive update from subject.
+      ...we could include common update logic here...
+
+
+
+.. py:class:: PubSub
+
+   Publish Subscribe decorator for object instantiated by the Data Factory.
+
+   .. method:: attach(self, observer: Observer)
+
+
+
+   .. method:: detach(self, observer: Observer)
+
+
+
+   .. method:: notify(self)
+
+
+      Trigger an update in each subscriber.
+
+
+   .. method:: notify_one(self, observer: Observer = None)
+
+
+      Trigger an update in a specific subscriber.
+
+
+   .. method:: dataReady(self)
+
+
+      I can see this being used for basic munging of data once it's gathered from different sources.
+      Or perhaps there are summary views of data that actually make sense to have here, like a report of what you're subscribing to.
+
+      Could this be the algorithm code? It's the algorithm that's a ConcreteSubject of interest by others, and it
+      attaches, detaches, and notifies people of it's changes...
+
+      Usually, the subscription logic is only a fraction of what a Subject can
+      really do. Subjects commonly hold some important business logic, that
+      triggers a notification method whenever something important is about to
+      happen (or after it).
+
+
+
+.. py:class:: ConcreteObserverA
+
+   Bases: :class:`datapipes.observer.Observer`
+
+   The Observer interface declares the update method, used by subjects.
+
+   .. method:: update(self, subject: Subject)
+
+
+      Receive update from subject.
+      ...we could include common update logic here...
+
+
+
+.. py:class:: ConcreteObserverB
+
+   Bases: :class:`datapipes.observer.Observer`
+
+   The Observer interface declares the update method, used by subjects.
+
+   .. method:: update(self, subject: Subject)
+
+
+      Receive update from subject.
+      ...we could include common update logic here...
+
+
+
